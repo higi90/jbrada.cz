@@ -1,0 +1,29 @@
+/*
+
+Mixins
+---------
+
+Custom mixins
+
+*/
+
+//--------------
+// Styles
+//--------------
+
+.clearfix {
+	&:after {
+		content:"";
+		display:table;
+		clear:both;
+	}
+}
+
+.clear {
+	clear: both;
+}
+
+.aTaken() {
+	text-decoration: none;
+	color: inherit;
+}

@@ -1,0 +1,307 @@
+/*
+
+Main
+---------
+
+Contains styles and definitons for homepage jbrada.cz
+
+*/
+
+//--------------
+// Keyframes
+//--------------
+
+.keyframes(~'loading, 0%{transform: scale(1);} 50%{transform: scale(1.025);} 100%{transform: scale(1);} ');
+.keyframes(~'meAfterLoad, 0%{transform: scale(1);} 50%{transform: scale(1.05);} 100%{transform: scale(1);} ');
+.keyframes(~'blink, 0%{opacity: 1;} 50%{opacity: 0;} 100%{ opacity: 1;}');
+.keyframes(~'show, 0%{opacity: 0;} 100%{ opacity: 1;}');
+
+//--------------
+// Styles
+//--------------
+.site-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  @media @mobile {
+    overflow: visible;
+  }
+}
+
+.slide {
+  .clearfix;
+  position: relative;
+
+  width: calc(~'100% + @{asideWidth}');
+  height: 100%;
+
+  @media @mobile {
+    width: 100%;
+  }
+  .transition(transform 400ms linear);
+
+  .main {
+    position: relative;
+    float: left;
+
+    width: calc(~'100% - @{asideWidth}');
+    height: 100%;
+
+    &::after {
+      content: "";
+      background: transparent;
+      .transition(background-color 400ms linear);
+    }
+
+    @media @mobile {
+      float: none;
+      width: 100%;
+      min-height: 350px;
+    }
+  }
+
+  .cv {
+    position: relative;
+    float: left;
+
+    width: 500px;
+
+    @media @mobile {
+      width: auto;
+      float: none;
+    }
+  }
+}
+
+.loading {
+
+  .circle {
+    margin-left: -175px;
+
+    .circle::before {
+      opacity: 1;
+    }
+
+    .circle__typed {
+      zoom: 1;
+      opacity: 1;
+    }
+
+  }
+
+  .me {
+    opacity: 0;
+    margin-left: -75px;
+
+    .animation(none);
+  }
+
+  .nav-contacts, .nav-cv {
+    display: none;
+    opacity: 0;
+    .animation(none);
+  }
+}
+
+
+.circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  display: table;
+  margin-left: -335px;
+  margin-top: -175px;
+  width: 350px;
+  height: 350px;
+  .border-radius(100%);
+  .box-sizing(border-box);
+
+  background: url('../img/photo.jpg') center center no-repeat;
+
+  .transition(margin 500ms ease);
+
+  .circle::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    .border-radius(100%);
+    .box-sizing(border-box);
+
+    background: @shark;
+
+    .transition(opacity 1s ease-in-out);
+    opacity: 0;
+  }
+
+  .circle__typed {
+    position: relative;
+    z-index: 100;
+
+    width: 350px;
+    height: 100%;
+    padding: 0 50px;
+    .border-radius(100%);
+    align-items: center;
+    display: table-cell;
+    vertical-align: middle;
+
+    color: @grayLight;
+    background: @shark;
+
+    font-size: 15px;
+
+    .transition(opacity 1s ease-in-out);
+    opacity: 0;
+
+  }
+
+  @media @mobile {
+    display: none;
+  }
+}
+
+.me {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 155px;
+  height: 130px;
+  margin-top: -50px;
+  margin-left: 100px;
+
+  text-align: center;
+
+  color: @nevada;
+
+  .transition(all 500ms ease);
+  .animation(meAfterLoad 1.5s ease);
+  .animation-delay(700ms);
+
+  &:hover {
+    .scale(1.05);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .me__monogram {
+    margin: 0 0 10px;
+
+    font-weight: 400;
+    font-size: 139px;
+    line-height: 95px;
+  }
+
+  .me__position {
+    font-size: 16px;
+    line-height: 16px;
+    text-transform: uppercase;
+  }
+
+  @media @mobile {
+    margin-left: -77px;
+    margin-top: -65px;
+  }
+}
+
+
+.tag {
+  &--red-dark {
+    color: @redDark;
+  }
+
+  &--red {
+    color: @red;
+  }
+
+  &--pink {
+    color: @pink;
+  }
+
+  &--yellow-light {
+    color: @yellowLight;
+  }
+  &--green-light {
+    color: @greenLight;
+  }
+
+  &--orange-light {
+    color: @orangeLight;
+  }
+
+}
+
+.nav-contacts {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  .translate(30px, 100px);
+  display: block;
+  width: 300px;
+  //background: red;
+  text-align: center;
+  opacity: 0;
+  .animation(show 1.5s ease forwards);
+  .animation-delay(2s);
+
+  color: @nevada;
+
+  a {
+    display: inline-block;
+    margin-right: 5px;
+    .transition(color 300ms ease);
+    &:hover {
+      color: @shark;
+    }
+
+    &:nth-of-type(last-of-type) {
+      margin-right: 0;
+    }
+  }
+
+  .fa {
+    font-size: 1.2rem;
+  }
+
+  @media @mobile {
+    .translate(-50%, 100px);
+  }
+}
+
+.aside-opened {
+  .slide {
+    .translate(-@asideWidth, 0);
+
+    .main {
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100;
+
+        background: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+  @media @mobile {
+    .slide {
+      .translate(none);
+      &::after {
+        content: none;
+      }
+    }
+  }
+}

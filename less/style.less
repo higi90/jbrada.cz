@@ -1,0 +1,49 @@
+/*
+
+Root file
+---------
+
+File contains
+* Includes
+* Important setup
+
+*/
+
+//--------------
+// Imports
+//--------------
+
+@import "../node_modules/lesshat/lesshat.less";
+@import "fonts";
+@import "mixins";
+
+@import "variables";
+
+@import "typography";
+@import "button";
+@import "main";
+@import "cv";
+
+//--------------
+// Styles
+//--------------
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: @jura;
+    font-weight: 300;
+    color: @shark;
+    font-size: 16px;
+    background: @white;
+}
