@@ -1,4 +1,6 @@
 #!/bin/bash
+# file: setup.sh
+
 npm install;
-grunt copy;
+grunt copy-assets;
 grunt;
